@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <body>
+
+      <div id="resultsData" name="resultsData" class="resultsData"></div>
+    </body>
+
 <script type="text/javascript">
 
 var url = "https://raw.githubusercontent.com/oharelbs/myOokla/master/ookla_results.csv";
@@ -9,21 +15,28 @@ request.open("GET", url, false);
 request.send(null);  
 
 var csvData = new Array();
-var jsonObject = request.responseText.split(/\r?\n|\r/);
+//var jsonObject = request.responseText.split(/\r?\n|\r/);
+var jsonObject = request.responseText.split(/\"/);
 for (var i = 0; i < jsonObject.length; i++) {
   csvData.push(jsonObject[i].split(','));
 }
 // Retrived data from csv file content
 console.log(csvData);
-document.getElementById('speedResultsData').innerHTML = csvData;
+document.getElementById('resultsData').innerHTML = csvData;
 
 </script>
 
-<head>
+<style>
+.resultsData{
+
+font-weight: 500;
+
+}
+
+
+</style>
+
+
 
 </head>
-<body>
-
-  <div id="speedResultsData"></div>
-</body>
 </html>

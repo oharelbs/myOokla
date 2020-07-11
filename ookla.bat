@@ -1,2 +1,2 @@
 @echo off
-speedtest.exe  --format=csv >>ookla_results.csv
+D:\GitHub\myOokla\speedtest.exe  --format=json-pretty >>ookla_results.csv
