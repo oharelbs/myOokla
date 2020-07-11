@@ -15,6 +15,7 @@ for (var i = 0; i < jsonObject.length; i++) {
 }
 // Retrived data from csv file content
 console.log(csvData);
+document.getElementById('speedResultsData').innerHTML = csvData;
 
 </script>
 
@@ -22,5 +23,7 @@ console.log(csvData);
 
 </head>
 <body>
+
+  <div id="speedResultsData"></div>
 </body>
 </html>
