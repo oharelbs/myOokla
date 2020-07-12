@@ -24,14 +24,27 @@ request.send(null);
 var csvData = new Array();
 var csvDataD = new Array();
 var csvDataU = new Array();
-
+csvDataN = new Array();
 var jsonObject = request.responseText.split(/\r?\n|\r/);
+
+
+
 for (var i = 0; i < jsonObject.length; i++) {
   csvData.push(jsonObject[i].split(','));
 
-  var downloadMbps = jsonObject[5].split(',');
-  downloadMbps = downloadMbps[5]/125000; //download MPBS
+
+  //for(var t = 1; t < csvData.length; t++) {
+ //console.log('csvData --> ' + csvData[t][5]);
+ //csvDataD.push(csvData[t][5])
+//}
   
+  
+ var downloadMbps = jsonObject[5].split(',');
+   downloadMbps = downloadMbps[5]/125000; //download MPBS
+   
+
+console.log('hbs --> ' + downloadMbps);
+
   var uploadMbps = jsonObject[6].split(',');
   uploadMbps = uploadMbps[6]/125000; //upload MPBS
 
@@ -66,7 +79,7 @@ var myConfig = {
   },
 	series : [
   	{
-			values : [downloadMbps, uploadMbps]
+			values : [downloadMbps,uploadMbps]
 		}
 	]
 };
@@ -81,10 +94,17 @@ zingchart.render({
 }
 
 // Retrived data from csv file content
-console.log(csvData);
-console.log('length --> ' + csvData.length);
-console.log('five --> ' + csvData[5][5]);
-console.log('csvDataD '+ csvDataD)
+function downloadspeed(){
+ for(var t = 1; t < csvData.length; t++) {
+  csvDataD.push(csvData[t][5])
+  console.log('csvData --> ' + csvDataD);
+  return csvDataD
+ }
+ //return 100;//csvData[t][5];
+}
+// console.log('length --> ' + csvData.length);
+ //console.log('five --> ' + csvData[5][5]);
+// console.log('csvDataD '+ csvDataD)
 //console.log(downloadMbps, uploadMbps);
 document.getElementById('resultsData').innerHTML = csvData;
 
